@@ -1,0 +1,112 @@
+﻿Esse documento foi elaborado em 01/09/2018, às 13h49.
+
+Favor organizar cronologicamente, em ordem de mais urgente para menos urgente:
+-> Use asteriscos ( * ) para reiterar a importância.
+-> Use esse documento para informações sobre o Arena_Admin também.
+-> A cada alteração, faça o registro do que foi feito na ultima seção desse documento (LOG).
+
+
+
+Atualmente:
+	Implementando o sistema em MySql :)
+		-> Deve ser testado Arena Admin: INSERTS, UPDATES e DELETES.
+
+
+Falta fazer:
+		
+	Conferir desempenho dos métodos:
+		Principalmente nos métodos novos, de atributos por turno, verificar os FORs:
+			****Método OrganizarArrayPorTurno.
+
+	Testar o Jogo geral:
+		Principalmente sobre os métodos novos, de atributos por turno.
+		Testar o ArenaAdmin sobre os métodos update, insert, select novos.
+		Testar o jogo sobre as novas ações por turno.
+		
+	Testar o Jogo Geral:
+		Dar ênfase a testes por turno das ações do monstro.
+		-> Deve ser feito um Monstro que realize ações por turno, a fim de testar se as implementações são funcionais.
+
+	Arrumar o layout dos DataGridView, pelo menos os que são mostrados ao usuário:
+		- No frmSelecionar,
+		Nos forms do Arena Admin:
+			Principalmente no frmMenu.
+
+
+Novas implementações/melhorias:
+	
+	Fazer o método EscolherHabilidadeTurno em outro Thread.
+
+	Implementar um botão de GO na pesquisa de personagens.
+
+	Implementar listas de Personagens no frmSelecionar.
+	
+	Implementar EnergiasGanhasPorTurno.
+
+	Implementar Stun.
+
+	Implementar Destruição De Energia Aleatória, pelo Monstro.
+
+	Implementar ToolTips
+	
+	
+	
+	
+	
+	Implementação de sistema multiplayer. Para referência:
+		https://youtu.be/YAqeyxuENik
+		https://github.com/gamepopper/GPNetwork
+
+
+LOG:
+
+	01/09/2018 - 14h00	-	Atualização do Documentação.txt: foi criado a seção LOG.												-BeaKKeRR
+
+	02/09/2018 - 13h00	-	Correção de BUG: Agora, todas os métodos Por Turno estão devidamente configurados.
+		-> Antes, apenas a habilidade 3 estava configurada: outros métodos usavam código obsoleto.									-BeaKKeRR
+	02/09/2018 - 13h15	-	Atualização do Documentação.txt: Atualização na seção "Conferir desempenho dos votos".					-BeaKKeRR
+	02/09/2018 - 14h00	-	Implementação do Invulnerável: Métodos criados, lógica aprimorada e conceitos revistos.					-BeaKKeRR
+	02/09/2018 - 14h03	-	Atualização do Documentação.txt: Atualização da seção "Falta fazer".									-BeaKKeRR
+	02/09/2018 - 20h50	-	Atualização do Arena_Admin: Foram setados icones, informações de Assembly e um certificado.	
+		-> Também foi feito um Release do Arena_Admin: Build 1020.																	-BeaKKeRR
+	02/09/2018 - 21h11	-	Atualização dos Forms do Arena. Foram configurados icones e corrigidos pequenos bugs de design.			-BeaKKeRR
+	02/09/2018 - 21h23	-	Atualização no design do frmTurno.																		-BeaKKeRR
+	02/09/2018 - 21h25	-	Atualizadas informações do Assembly do Arena. Feito Release: Build 1050.								-BeaKKeRR
+	02/09/2018 - 21h31	-	Inicio implementação de Habilidades por Turno do Monstro. Alterações na Classe Arena.					-BeaKKeRR
+	02/09/2018 - 21h59	-	Termina implementação na classe Arena. Inicia a implementação no frmArena.								-BeaKKeRR
+	02/09/2018 - 22h15	-	Termina implementação no frmArena.																		-BeaKKeRR
+	02/09/2018 - 22h17	-	Atualização do Documentação.txt: Atualizações de objetivos futuros.										-BeaKKeRR
+
+	04/09/2018 - 01h26	-	Teste do personagem Minato. Encontrado bug na habilidade 3. Está documentado.							-Kynusa
+	04/09/2018 - 20h15	-	Detectado bug na Classe Arena, método RetornaHabAleatoria. Está documentado.							-BeaKKeRR
+
+	05/09/2018 - 00h08	-	Detectado bug no ArenaAdmin, Hab2, ganho de Energia Vermelha. Corrigido.								-Kynusa
+	05/09/2018 - 20h33	-	Inicia implementação da lógica de uso de habilidades do Monstro. -> Arena.RetornaHabAleatoria.			-BeaKKeRR
+	05/09/2018 - 20h58	-	Termina implementação da lógica de uso de habilidades do Monstro.
+		-> Deve ser lembrado de implementar novas mudanças sempre que necessário (alterações como novos danos, curas, stun, etc).
+		-> O código antigo está abaixo do novo código, em um #Region, chamado de Código Obsoleto.
+			-> O código obsoleto não levava em conta habilidades por turno, e usava uma lógica errada.								-BeaKKeRR
+	05/09/2018 - 21h04	-	Detectado um minor bug no lblMonstroDanoVerdadeiroTurno. Foi Corrigido.									-BeaKKeRR
+	05/09/2018 - 21h18	-	Correção de minor bugs e organização de código dos lblRecebendo.										-BeaKKeRR
+	05/09/2018 - 21h20	-	Inicia correção de lógica do uso das habilidades do Personagem.											-BeaKKeRR
+	05/09/2018 - 21h37	-	Termina correção na lógida do uso das habilidades do Personagem.
+		-> O código antigo ainda existe na hab1, para referencia, na #Region Código Obsoleto.										-BeaKKeRR
+	05/09/2018 - 21h38	-	Atualização do Documentação.txt -> Atualizações de objetivos atuais.									-BeaKKeRR
+
+	06/09/2018 - 21h59	-	Detectado um bug no Arena_Admin. O bug está em processo de correção.
+		-> Ao criar um novo personagem, aparece uma mensagem de erro: 
+			"É necessário declarar a variável escalar "@Hab1_DanoVerdadeiroPorTurnos"."												-BeaKKeRR
+	06/09/2018 - 22h07	-	Bug supracitado foi corrigido. Corrigido na classe Monstro e Personagem.
+		-> Feito Novo Release: Build 1023																							-BeaKKeRR
+	06/09/2018 - 22h50	-	Arena: Terminada implementação no frmSelecionar.
+		-> Com um timer, foi melhorado o desempenho da pesquisa de personagens.														-BeaKKeRR
+
+	07/09/2018 - 15h08	-	frmSelecionar: melhorado desempenho do timer1.															-BeaKKeRR
+	07/09/2018 - 16h05	-	Classe Arena, Método DiminuirHabilidadesPorTurno. Decidido e comentado questões sobre desempenho.		-BeaKKeRR
+
+	08/09/2018 - 00h42	-	Inicia implementação de Overloads para o frmTurno.														-BeaKKeRR
+	08/09/2018 - 00h50	-	Overloads para o frmTurno implementados (método construtor). Documentação.txt atualizado.				-BeaKKeRR
+
+	05/10/2018 ~ 06/10/2018	-	Implementação no Sistema, referente ao banco de dados MySql.										-BeaKKeRR
+	06/10/2018 - 14h30	-	Melhorias mínimas no design do dtgPersonagens, frmSelecionar.											-BeaKKeRR
+	07/10/2018 - 02h11	-	Correção de Sintaxe MySql nos métodos Search.															-BeaKKeRR
