@@ -26,7 +26,7 @@ namespace AcessoDados
                 {
                     conexao.Open();
 
-                    sql.Append("USE bmh6qyguc3q2m5pj55e9; ");
+                    
                     sql.Append("SELECT * FROM Personagens ");
                     sql.Append("ORDER BY Nome_Personagem ASC");
 
@@ -53,7 +53,7 @@ namespace AcessoDados
                 {
                     conexao.Open();
 
-                    sql.Append("USE bmh6qyguc3q2m5pj55e9; ");
+                    
                     sql.Append("SELECT * FROM Personagens ");                    
                     sql.Append("WHERE Nome_Personagem LIKE @Nome ");
                     sql.Append("ORDER BY Nome_Personagem ASC");

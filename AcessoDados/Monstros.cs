@@ -26,7 +26,7 @@ namespace AcessoDados
                 {
                     conexao.Open();
 
-                    sql.Append("USE bmh6qyguc3q2m5pj55e9; ");
+                    
                     sql.Append("SELECT * FROM Monstros ");
                     sql.Append("ORDER BY Nome_Personagem ASC");
 
@@ -53,7 +53,7 @@ namespace AcessoDados
                 {
                     conexao.Open();
 
-                    sql.Append("USE bmh6qyguc3q2m5pj55e9; ");
+                    
                     sql.Append("SELECT * FROM Monstros ");
                     sql.Append("WHERE ID_Monstro = @ID");// + ID.ToString());
 
@@ -83,7 +83,7 @@ namespace AcessoDados
             {
                 conexao.Open();
 
-                sql.Append("USE bmh6qyguc3q2m5pj55e9; ");
+                
                 sql.Append("SELECT ID_Monstro FROM Monstros");
 
                 comandoSql.CommandText = sql.ToString();
