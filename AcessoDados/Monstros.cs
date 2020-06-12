@@ -1,32 +1,23 @@
-﻿using System;
-using MySql.Data.MySqlClient;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
+using System.Text;
 
 namespace AcessoDados
 {
     public class Monstros
     {
-        MySqlCommand comandoSql;
-        StringBuilder sql;
-        DataTable dadosTabela;
-
         public DataTable Listar()
         {
             try
             {
-                comandoSql = new MySqlCommand();
-                sql = new StringBuilder();
-                dadosTabela = new DataTable();
+                MySqlCommand comandoSql = new MySqlCommand();
+                StringBuilder sql = new StringBuilder();
+                DataTable dadosTabela = new DataTable();
 
                 using (MySqlConnection conexao = new MySqlConnection(Conexao.StringConexaoMySql))
                 {
                     conexao.Open();
-
-                    
                     sql.Append("SELECT * FROM Monstros ");
                     sql.Append("ORDER BY Nome_Personagem ASC");
 
@@ -41,19 +32,18 @@ namespace AcessoDados
                 throw new Exception("Erro no método Listar, tabela Monstros! Caso o problema persista, entre em contato com o Administrador!\n\n" + ex.Message);
             }
         }
+
         public DataTable ListarSearch(int ID)
         {
             try
             {
-                comandoSql = new MySqlCommand();
-                sql = new StringBuilder();
-                dadosTabela = new DataTable();
+                MySqlCommand comandoSql = new MySqlCommand();
+                StringBuilder sql = new StringBuilder();
+                DataTable dadosTabela = new DataTable();
 
                 using (MySqlConnection conexao = new MySqlConnection(Conexao.StringConexaoMySql))
                 {
                     conexao.Open();
-
-                    
                     sql.Append("SELECT * FROM Monstros ");
                     sql.Append("WHERE ID_Monstro = @ID");// + ID.ToString());
 
@@ -75,15 +65,13 @@ namespace AcessoDados
 
         public int[] RetornaIDs()
         {
-            comandoSql = new MySqlCommand();
-            sql = new StringBuilder();
-            dadosTabela = new DataTable();            
+            MySqlCommand comandoSql = new MySqlCommand();
+            StringBuilder sql = new StringBuilder();
+            DataTable dadosTabela = new DataTable();
 
             using (MySqlConnection conexao = new MySqlConnection(Conexao.StringConexaoMySql))
             {
                 conexao.Open();
-
-                
                 sql.Append("SELECT ID_Monstro FROM Monstros");
 
                 comandoSql.CommandText = sql.ToString();
@@ -103,6 +91,5 @@ namespace AcessoDados
 
             return d;
         }
-
     }
 }

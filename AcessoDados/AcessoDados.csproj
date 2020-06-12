@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Conexao.cs" />
     <Compile Include="Monstros.cs" />
+    <Compile Include="Acesso.cs" />
     <Compile Include="Personagens.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
