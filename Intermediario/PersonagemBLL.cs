@@ -1,8 +1,9 @@
 ﻿using AcessoDados;
 using Intermediario.Interfaces;
+using Model.Personagem;
+using Model.Personagem.Energias;
+using Model.Personagem.Regras.Classes;
 using Model.Shared;
-using Model.Monstro;
-using Model.Monstro.Regras.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,37 +11,37 @@ using System.Text;
 
 namespace Intermediario
 {
-    public class MonstroBLL : IRepository<Monstro>
+    public class PersonagemBLL : IRepository<Personagem>
     {
         #region Atributes
 
         private readonly Acesso acesso = new Acesso();
         private readonly StringBuilder sql = new StringBuilder();
-        private readonly string monstro = MonstroRegras.NomeTabela;
-        private readonly string m = MonstroRegras.AliasTabela;
-        private readonly int numeroHabilidades = MonstroRegras.NumeroHabilidades;
+        private readonly string personagem = PersonagemRegras.NomeTabela;
+        private readonly string p = PersonagemRegras.AliasTabela;
+        private readonly int numeroHabilidades = PersonagemRegras.NumeroHabilidades;
 
         #endregion
 
         #region Methods
 
-        public bool Insert(Monstro obj)
+        public bool Insert(Personagem obj)
         {
             bool aux;
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
             #region Query
-            sql.Append($" INSERT INTO {monstro} VALUES ");
+            sql.Append($" INSERT INTO {personagem} VALUES ");
             sql.Append(" (NULL, ");
-            sql.Append($" @nome_{monstro}, ");
-            sql.Append($" @descricao_{monstro}, ");
-            sql.Append($" @foto_{monstro}) ");
+            sql.Append($" @nome_{personagem}, ");
+            sql.Append($" @descricao_{personagem}, ");
+            sql.Append($" @foto_{personagem}) ");
             #endregion
 
             #region Parameters            
-            parameters[$"@nome_{monstro}"] = obj.Nome;
-            parameters[$"@descricao_{monstro}"] = obj.Descricao;
-            parameters[$"@foto_{monstro}"] = obj.Foto;
+            parameters[$"@nome_{personagem}"] = obj.Nome;
+            parameters[$"@descricao_{personagem}"] = obj.Descricao;
+            parameters[$"@foto_{personagem}"] = obj.Foto;
             #endregion
 
             obj.Id = acesso.Insert_(sql.ToString(), parameters);
@@ -53,7 +54,7 @@ namespace Intermediario
 
                 #region Query
                 sql.Clear();
-                sql.Append($" INSERT INTO {monstro}_hab{i} VALUES ");
+                sql.Append($" INSERT INTO {personagem}_hab{i} VALUES ");
                 sql.Append(" (NULL, ");
                 sql.Append($" @hab{i}_nome, ");
                 sql.Append($" @hab{i}_foto, ");
@@ -74,9 +75,16 @@ namespace Intermediario
                 sql.Append($" @hab{i}_armadura_por_turno_turnos, ");
                 sql.Append($" @hab{i}_descricao, ");
                 sql.Append($" @hab{i}_recarga, ");
+                sql.Append($" @hab{i}_verde, ");
+                sql.Append($" @hab{i}_azul, ");
+                sql.Append($" @hab{i}_vermelho, ");
+                sql.Append($" @hab{i}_preto, ");
                 sql.Append($" @hab{i}_invulnerabilidade, ");
-                sql.Append($" @hab{i}_disposicao, ");
-                sql.Append($" @hab{i}_id_monstro) ");
+                sql.Append($" @hab{i}_ganho_verde, ");
+                sql.Append($" @hab{i}_ganho_azul, ");
+                sql.Append($" @hab{i}_ganho_vermelho, ");
+                sql.Append($" @hab{i}_ganho_preto, ");
+                sql.Append($" @hab{i}_id_personagem) ");
                 #endregion
 
                 #region Parameters
@@ -100,9 +108,16 @@ namespace Intermediario
                 parameters[$"@hab{i}_armadura_por_turno_turnos"] = obj.Habilidades[i - 1].ArmaduraPorTurno.Turnos;
                 parameters[$"@hab{i}_descricao"] = obj.Habilidades[i - 1].Descricao;
                 parameters[$"@hab{i}_recarga"] = obj.Habilidades[i - 1].Recarga;
+                parameters[$"@hab{i}_verde"] = obj.Habilidades[i - 1].EnergiaVerde.Quantidade;
+                parameters[$"@hab{i}_azul"] = obj.Habilidades[i - 1].EnergiaAzul.Quantidade;
+                parameters[$"@hab{i}_vermelho"] = obj.Habilidades[i - 1].EnergiaVermelho.Quantidade;
+                parameters[$"@hab{i}_preto"] = obj.Habilidades[i - 1].EnergiaPreto.Quantidade;
                 parameters[$"@hab{i}_invulnerabilidade"] = obj.Habilidades[i - 1].Invulnerabilidade;
-                parameters[$"@hab{i}_disposicao"] = obj.Habilidades[i - 1].Disposicao;
-                parameters[$"@hab{i}_id_{monstro}"] = obj.Id;
+                parameters[$"@hab{i}_ganho_verde"] = obj.Habilidades[i - 1].EnergiaVerde.Ganho;
+                parameters[$"@hab{i}_ganho_azul"] = obj.Habilidades[i - 1].EnergiaAzul.Ganho;
+                parameters[$"@hab{i}_ganho_vermelho"] = obj.Habilidades[i - 1].EnergiaVermelho.Ganho;
+                parameters[$"@hab{i}_ganho_preto"] = obj.Habilidades[i - 1].EnergiaPreto.Ganho;
+                parameters[$"@hab{i}_id_{personagem}"] = obj.Id;
                 #endregion
 
                 aux = acesso.Insert(sql.ToString(), parameters);
@@ -111,24 +126,24 @@ namespace Intermediario
             return aux;
         }
 
-        public bool Update(Monstro obj)
+        public bool Update(Personagem obj)
         {
             bool aux;
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
             #region Query
-            sql.Append($" UPDATE {monstro} SET ");
-            sql.Append($" nome_{monstro} = @nome_{monstro}, ");
-            sql.Append($" descricao_{monstro} = @descricao_{monstro}, ");
-            sql.Append($" foto_{monstro} = @foto_{monstro} ");
-            sql.Append($" WHERE id_{monstro} = @id_{monstro} ");
+            sql.Append($" UPDATE {personagem} SET ");
+            sql.Append($" nome_{personagem} = @nome_{personagem}, ");
+            sql.Append($" descricao_{personagem} = @descricao_{personagem}, ");
+            sql.Append($" foto_{personagem} = @foto_{personagem} ");
+            sql.Append($" WHERE id_{personagem} = @id_{personagem} ");
             #endregion
 
             #region Parameters            
-            parameters[$"@nome_{monstro}"] = obj.Nome;
-            parameters[$"@descricao_{monstro}"] = obj.Descricao;
-            parameters[$"@foto_{monstro}"] = obj.Foto;
-            parameters[$"@id_{monstro}"] = obj.Id;
+            parameters[$"@nome_{personagem}"] = obj.Nome;
+            parameters[$"@descricao_{personagem}"] = obj.Descricao;
+            parameters[$"@foto_{personagem}"] = obj.Foto;
+            parameters[$"@id_{personagem}"] = obj.Id;
             #endregion
 
             aux = acesso.Update(sql.ToString(), parameters);
@@ -140,7 +155,7 @@ namespace Intermediario
 
                 #region Query
                 sql.Clear();
-                sql.Append($" UPDATE {monstro}_hab{i} SET ");
+                sql.Append($" UPDATE {personagem}_hab{i} SET ");
                 sql.Append($" hab{i}_nome = @hab{i}_nome, ");
                 sql.Append($" hab{i}_foto = @hab{i}_foto, ");
                 sql.Append($" hab{i}_dano = @hab{i}_dano, ");
@@ -160,8 +175,15 @@ namespace Intermediario
                 sql.Append($" hab{i}_armadura_por_turno_turnos = @hab{i}_armadura_por_turno_turnos, ");
                 sql.Append($" hab{i}_descricao = @hab{i}_descricao, ");
                 sql.Append($" hab{i}_recarga = @hab{i}_recarga, ");
+                sql.Append($" hab{i}_verde = @hab{i}_verde, ");
+                sql.Append($" hab{i}_azul = @hab{i}_azul, ");
+                sql.Append($" hab{i}_vermelho = @hab{i}_vermelho, ");
+                sql.Append($" hab{i}_preto = @hab{i}_preto, ");
                 sql.Append($" hab{i}_invulnerabilidade = @hab{i}_invulnerabilidade, ");
-                sql.Append($" hab{i}_disposicao = @hab{i}_disposicao ");
+                sql.Append($" hab{i}_ganho_verde = @hab{i}_ganho_verde, ");
+                sql.Append($" hab{i}_ganho_azul = @hab{i}_ganho_azul, ");
+                sql.Append($" hab{i}_ganho_vermelho = @hab{i}_ganho_vermelho, ");
+                sql.Append($" hab{i}_ganho_preto = @hab{i}_ganho_preto ");
                 sql.Append($" WHERE id_hab{i} = @id_hab{i} ");
                 #endregion
 
@@ -186,8 +208,15 @@ namespace Intermediario
                 parameters[$"@hab{i}_armadura_por_turno_turnos"] = obj.Habilidades[i - 1].ArmaduraPorTurno.Turnos;
                 parameters[$"@hab{i}_descricao"] = obj.Habilidades[i - 1].Descricao;
                 parameters[$"@hab{i}_recarga"] = obj.Habilidades[i - 1].Recarga;
+                parameters[$"@hab{i}_verde"] = obj.Habilidades[i - 1].EnergiaVerde.Quantidade;
+                parameters[$"@hab{i}_azul"] = obj.Habilidades[i - 1].EnergiaAzul.Quantidade;
+                parameters[$"@hab{i}_vermelho"] = obj.Habilidades[i - 1].EnergiaVermelho.Quantidade;
+                parameters[$"@hab{i}_preto"] = obj.Habilidades[i - 1].EnergiaPreto.Quantidade;
                 parameters[$"@hab{i}_invulnerabilidade"] = obj.Habilidades[i - 1].Invulnerabilidade;
-                parameters[$"@hab{i}_disposicao"] = obj.Habilidades[i - 1].Disposicao;
+                parameters[$"@hab{i}_ganho_verde"] = obj.Habilidades[i - 1].EnergiaVerde.Ganho;
+                parameters[$"@hab{i}_ganho_azul"] = obj.Habilidades[i - 1].EnergiaAzul.Ganho;
+                parameters[$"@hab{i}_ganho_vermelho"] = obj.Habilidades[i - 1].EnergiaVermelho.Ganho;
+                parameters[$"@hab{i}_ganho_preto"] = obj.Habilidades[i - 1].EnergiaPreto.Ganho;
                 parameters[$"@id_hab{i}"] = obj.Habilidades[i - 1].Id;
                 #endregion
 
@@ -209,13 +238,13 @@ namespace Intermediario
 
                 #region Query
                 sql.Clear();
-                sql.Append($" DELETE FROM {monstro}_hab{i} ");
-                sql.Append($" WHERE hab{i}_id_{monstro} = @hab{i}_id_{monstro} ");
+                sql.Append($" DELETE FROM {personagem}_hab{i} ");
+                sql.Append($" WHERE hab{i}_id_{personagem} = @hab{i}_id_{personagem} ");
                 #endregion
 
                 #region Parameters
                 parameters.Clear();
-                parameters[$"@hab{i}_id_{monstro}"] = id;
+                parameters[$"@hab{i}_id_{personagem}"] = id;
                 #endregion
 
                 aux = acesso.Delete(sql.ToString(), parameters);
@@ -223,13 +252,13 @@ namespace Intermediario
 
             #region Query
             sql.Clear();
-            sql.Append($" DELETE FROM {monstro} ");
-            sql.Append($" WHERE id_{monstro} = @id_{monstro} ");
+            sql.Append($" DELETE FROM {personagem} ");
+            sql.Append($" WHERE id_{personagem} = @id_{personagem} ");
             #endregion
 
             #region Parameters       
             parameters.Clear();
-            parameters[$"@id_{monstro}"] = id;
+            parameters[$"@id_{personagem}"] = id;
             #endregion
 
             aux = acesso.Delete(sql.ToString(), parameters);
@@ -237,14 +266,14 @@ namespace Intermediario
             return aux;
         }
 
-        public List<Monstro> Select()
+        public List<Personagem> Select()
         {
-            var lst = new List<Monstro>();
+            var lst = new List<Personagem>();
 
-            sql.Append($" SELECT * FROM {monstro} {m} ");
+            sql.Append($" SELECT * FROM {personagem} {p} ");
             for (int i = 1; i <= numeroHabilidades; i++)
             {
-                sql.Append($" INNER JOIN {monstro}_hab{i} h{i} ON h{i}.hab{i}_id_{monstro} = {m}.id_{monstro} ");
+                sql.Append($" INNER JOIN {personagem}_hab{i} h{i} ON h{i}.hab{i}_id_{personagem} = {p}.id_{personagem} ");
             }
 
             DataTable dt = acesso.Select(sql.ToString());
@@ -253,16 +282,16 @@ namespace Intermediario
             {
                 foreach (DataRow r in dt.Rows)
                 {
-                    var obj = new Monstro()
+                    var obj = new Personagem()
                     {
-                        Id = Convert.ToInt32(r[$"id_{monstro}"]),
-                        Nome = Convert.ToString(r[$"nome_{monstro}"]),
-                        Descricao = r[$"descricao_{monstro}"] is DBNull ? string.Empty : Convert.ToString(r[$"descricao_{monstro}"]),
-                        Foto = (byte[])r[$"foto_{monstro}"]
+                        Id = Convert.ToInt32(r[$"id_{personagem}"]),
+                        Nome = Convert.ToString(r[$"nome_{personagem}"]),
+                        Descricao = r[$"descricao_{personagem}"] is DBNull ? string.Empty : Convert.ToString(r[$"descricao_{personagem}"]),
+                        Foto = (byte[])r[$"foto_{personagem}"]
                     };
                     for (int i = 1; i <= numeroHabilidades; i++)
                     {
-                        obj.Habilidades.Add(new HabilidadeMonstro()
+                        obj.Habilidades.Add(new HabilidadePersonagem()
                         {
                             Id = Convert.ToInt32(r[$"id_hab{i}"]),
                             Nome = Convert.ToString(r[$"hab{i}_nome"]),
@@ -279,8 +308,11 @@ namespace Intermediario
                             ArmaduraPorTurno = new ArmaduraPorTurno() { ArmaduraHabilidade = Convert.ToInt32(r[$"hab{i}_armadura_por_turno"]), Turnos = Convert.ToInt32(r[$"hab{i}_armadura_por_turno_turnos"]) },
                             Descricao = r[$"hab{i}_descricao"] is DBNull ? string.Empty : Convert.ToString(r[$"hab{i}_descricao"]),
                             Recarga = Convert.ToInt32(r[$"hab{i}_recarga"]),
-                            Invulnerabilidade = Convert.ToInt32(r[$"hab{i}_invulnerabilidade"]),
-                            Disposicao = Convert.ToInt32(r[$"hab{i}_disposicao"])
+                            EnergiaVerde = new EnergiaVerde() { Quantidade = Convert.ToInt32(r[$"hab{i}_verde"]), Ganho = Convert.ToInt32(r[$"hab{i}_ganho_verde"]) },
+                            EnergiaAzul = new EnergiaAzul() { Quantidade = Convert.ToInt32(r[$"hab{i}_azul"]), Ganho = Convert.ToInt32(r[$"hab{i}_ganho_azul"]) },
+                            EnergiaVermelho = new EnergiaVermelho() { Quantidade = Convert.ToInt32(r[$"hab{i}_vermelho"]), Ganho = Convert.ToInt32(r[$"hab{i}_ganho_vermelho"]) },
+                            EnergiaPreto = new EnergiaPreto() { Quantidade = Convert.ToInt32(r[$"hab{i}_preto"]), Ganho = Convert.ToInt32(r[$"hab{i}_ganho_preto"]) },
+                            Invulnerabilidade = Convert.ToInt32(r[$"hab{i}_invulnerabilidade"])
                         });
                     }
                     lst.Add(obj);

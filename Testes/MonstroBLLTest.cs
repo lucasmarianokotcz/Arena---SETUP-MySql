@@ -1,6 +1,6 @@
 ﻿using Intermediario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Model;
+using Model.Monstro;
 using System.Collections.Generic;
 
 namespace Testes

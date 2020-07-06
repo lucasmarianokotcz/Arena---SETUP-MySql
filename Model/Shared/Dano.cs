@@ -1,4 +1,4 @@
-﻿namespace Model.Atributos
+﻿namespace Model.Shared
 {
     public class Dano
     {
