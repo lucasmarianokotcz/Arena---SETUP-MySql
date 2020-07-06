@@ -1,0 +1,3 @@
+// TODO:
+
+1. Começar mexendo no form principal (fazer carregar os personagens, suas habilidades e seleção).

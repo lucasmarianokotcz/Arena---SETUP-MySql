@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Monstro\HabilidadeMonstro.cs" />
     <Compile Include="Monstro\Regras\Classes\MonstroRegras.cs" />
-    <Compile Include="Monstro\Regras\Classes\MonstroValidacao.cs" />
     <Compile Include="Personagem\Energias\Energia.cs" />
     <Compile Include="Personagem\Energias\EnergiaAzul.cs" />
     <Compile Include="Personagem\Energias\EnergiaPreto.cs" />
@@ -51,7 +50,6 @@
     <Compile Include="Personagem\Energias\EnergiaVermelho.cs" />
     <Compile Include="Personagem\HabilidadePersonagem.cs" />
     <Compile Include="Personagem\Regras\Classes\PersonagemRegras.cs" />
-    <Compile Include="Personagem\Regras\Classes\PersonagemValidacao.cs" />
     <Compile Include="Shared\Armadura.cs" />
     <Compile Include="Shared\Cura.cs" />
     <Compile Include="BaseModel.cs" />
