@@ -4,6 +4,7 @@ using Model.Personagem;
 using Model.Personagem.Energias;
 using Model.Personagem.Regras.Classes;
 using Model.Shared;
+using Model.Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -71,7 +72,8 @@ namespace Intermediario
                             EnergiaAzul = new EnergiaAzul() { Quantidade = Convert.ToInt32(r[$"hab{i}_azul"]), Ganho = Convert.ToInt32(r[$"hab{i}_ganho_azul"]) },
                             EnergiaVermelho = new EnergiaVermelho() { Quantidade = Convert.ToInt32(r[$"hab{i}_vermelho"]), Ganho = Convert.ToInt32(r[$"hab{i}_ganho_vermelho"]) },
                             EnergiaPreto = new EnergiaPreto() { Quantidade = Convert.ToInt32(r[$"hab{i}_preto"]), Ganho = Convert.ToInt32(r[$"hab{i}_ganho_preto"]) },
-                            Invulnerabilidade = Convert.ToInt32(r[$"hab{i}_invulnerabilidade"])
+                            Invulnerabilidade = Convert.ToInt32(r[$"hab{i}_invulnerabilidade"]),
+                            Alvo = (EAlvoHabilidade)Convert.ToInt32(r[$"hab{i}_alvo"])
                         });
                     }
                     lst.Add(obj);

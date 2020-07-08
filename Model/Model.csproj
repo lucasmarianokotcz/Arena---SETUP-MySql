@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arena\Regras\Classes\ArenaRegras.cs" />
     <Compile Include="Monstro\HabilidadeMonstro.cs" />
     <Compile Include="Monstro\Regras\Classes\MonstroRegras.cs" />
     <Compile Include="Personagem\Energias\Energia.cs" />
@@ -58,6 +60,8 @@
     <Compile Include="Monstro\Monstro.cs" />
     <Compile Include="Personagem\Personagem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\Enums\EAlvoHabilidade.cs" />
+    <Compile Include="Shared\Utilitarios\Utils.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

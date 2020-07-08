@@ -1,6 +1,7 @@
 ﻿using Intermediario;
 using Model.Monstro;
 using Model.Personagem;
+using Model.Shared.Utilitarios;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,17 +10,18 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Arena
+namespace ArenaV2
 {
     public partial class frmSelecionar : Form
     {
         #region Atributos
 
         private List<Personagem> lstPersonagens;
-        private bool foiEscolhido = false;
+        private int personagensEscolhidos = 0;
         private Personagem personagemSelecionado;
         private Monstro monstroSelecionado;
         private readonly PictureBox[] infoPics = new PictureBox[5];
+        private readonly List<byte[]> slotsOcupados = new List<byte[]>() { null, null, null };
 
         #endregion
 
@@ -86,8 +88,7 @@ namespace Arena
             {
                 if (e.RowIndex >= 0)
                 {
-                    foiEscolhido = true;
-                    picPersonagemEscolhido.Image = Image.FromStream(new MemoryStream(personagemSelecionado.Foto));
+                    SelecionaPersonagem(personagemSelecionado);
                 }
             }
             catch (Exception ex)
@@ -138,20 +139,20 @@ namespace Arena
         {
             try
             {
-                if (foiEscolhido)
+                if (personagensEscolhidos == 3)
                 {
                     Hide();
                     monstroSelecionado = new MonstroBLL().GerarMonstroAleatorio();
 
-                    frmArena formArena = new frmArena(personagemSelecionado, monstroSelecionado);
-                    formArena.ShowDialog();
+                    //frmArena formArena = new frmArena(personagemSelecionado, monstroSelecionado);
+                    //formArena.ShowDialog();
 
-                    foiEscolhido = false;
-                    picPersonagemEscolhido.Image = Properties.Resources.Ponto_de_interrogacao;
-
-                    //rmSelecionar_Load(null, null);
-
+                    personagensEscolhidos = 0;
+                    picPersonagemEscolhido1.Image = picPersonagemEscolhido2.Image = picPersonagemEscolhido3.Image = Properties.Resources.Ponto_de_interrogacao;
+                    slotsOcupados[0] = slotsOcupados[1] = slotsOcupados[2] = null;
+                    btnEscolher.Enabled = false;
                     grpInformacoes.Visible = false;
+
                     Show();
                 }
                 else
@@ -165,9 +166,59 @@ namespace Arena
             }
         }
 
+        #region DoubleClick nos Selecionados
+        private void picPersonagemEscolhido1_DoubleClick(object sender, EventArgs e)
+        {
+            picPersonagemEscolhido1.Image = Properties.Resources.Ponto_de_interrogacao;
+            slotsOcupados[0] = null;
+            personagensEscolhidos = slotsOcupados.Where(x => x != null).Count();
+            btnEscolher.Enabled = personagensEscolhidos == 3;
+        }
+
+        private void picPersonagemEscolhido2_DoubleClick(object sender, EventArgs e)
+        {
+            picPersonagemEscolhido2.Image = Properties.Resources.Ponto_de_interrogacao;
+            slotsOcupados[1] = null;
+            personagensEscolhidos = slotsOcupados.Where(x => x != null).Count();
+            btnEscolher.Enabled = personagensEscolhidos == 3;
+        }
+
+        private void picPersonagemEscolhido3_DoubleClick(object sender, EventArgs e)
+        {
+            picPersonagemEscolhido3.Image = Properties.Resources.Ponto_de_interrogacao;
+            slotsOcupados[2] = null;
+            personagensEscolhidos = slotsOcupados.Where(x => x != null).Count();
+            btnEscolher.Enabled = personagensEscolhidos == 3;
+        }
+        #endregion
+
         #endregion
 
         #region Private Methods
+
+        private void SelecionaPersonagem(Personagem personagem)
+        {
+            if (slotsOcupados[0] == null && slotsOcupados[1] != personagem.Foto && slotsOcupados[2] != personagem.Foto)
+            {
+                slotsOcupados[0] = personagem.Foto;
+                picPersonagemEscolhido1.Image = Utils.ConverteFoto(personagem.Foto);
+                personagensEscolhidos++;
+            }
+            else if (slotsOcupados[1] == null && slotsOcupados[0] != personagem.Foto && slotsOcupados[2] != personagem.Foto)
+            {
+                slotsOcupados[1] = personagem.Foto;
+                picPersonagemEscolhido2.Image = Utils.ConverteFoto(personagem.Foto);
+                personagensEscolhidos++;
+            }
+            else if (slotsOcupados[2] == null && slotsOcupados[0] != personagem.Foto && slotsOcupados[1] != personagem.Foto)
+            {
+                slotsOcupados[2] = personagem.Foto;
+                picPersonagemEscolhido3.Image = Utils.ConverteFoto(personagem.Foto);
+                personagensEscolhidos++;
+            }
+
+            btnEscolher.Enabled = personagensEscolhidos == 3;
+        }
 
         private void CarregaInformacoesPersonagem(Personagem personagem)
         {
@@ -315,6 +366,6 @@ namespace Arena
             }
         }
 
-        #endregion
+        #endregion                
     }
 }

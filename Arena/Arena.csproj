@@ -168,6 +168,10 @@
       <Project>{16b99a65-295a-42d8-8c2b-5fa8027318bf}</Project>
       <Name>Intermediario</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{d7b4653c-bf06-48c0-b73b-c4a8e074b362}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Ponto de interrogacao.jpg" />

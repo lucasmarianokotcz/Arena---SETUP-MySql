@@ -1,4 +1,4 @@
-﻿namespace Arena
+﻿namespace ArenaV2
 {
     partial class frmSelecionar
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelecionar));
             this.dtgPersonagens = new System.Windows.Forms.DataGridView();
             this.Foto = new System.Windows.Forms.DataGridViewImageColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +52,9 @@
             this.picPersonagemInfo = new System.Windows.Forms.PictureBox();
             this.lblEnergia = new System.Windows.Forms.Label();
             this.btnEscolher = new System.Windows.Forms.Button();
-            this.picPersonagemEscolhido = new System.Windows.Forms.PictureBox();
+            this.picPersonagemEscolhido1 = new System.Windows.Forms.PictureBox();
+            this.picPersonagemEscolhido2 = new System.Windows.Forms.PictureBox();
+            this.picPersonagemEscolhido3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPersonagens)).BeginInit();
             this.grpInformacoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEnergia5)).BeginInit();
@@ -67,7 +68,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picHab2Info)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHab1Info)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonagemInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido3)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgPersonagens
@@ -268,7 +271,6 @@
             // 
             this.txtInfoPersonagem.BackColor = System.Drawing.SystemColors.Control;
             this.txtInfoPersonagem.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInfoPersonagem.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtInfoPersonagem.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInfoPersonagem.Location = new System.Drawing.Point(10, 146);
             this.txtInfoPersonagem.Name = "txtInfoPersonagem";
@@ -347,40 +349,67 @@
             // btnEscolher
             // 
             this.btnEscolher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnEscolher.Enabled = false;
             this.btnEscolher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEscolher.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEscolher.Location = new System.Drawing.Point(846, 474);
+            this.btnEscolher.Location = new System.Drawing.Point(834, 474);
             this.btnEscolher.Name = "btnEscolher";
-            this.btnEscolher.Size = new System.Drawing.Size(150, 75);
+            this.btnEscolher.Size = new System.Drawing.Size(162, 75);
             this.btnEscolher.TabIndex = 30;
-            this.btnEscolher.Text = "Escolher Personagem";
+            this.btnEscolher.Text = "Escolher Personagens";
             this.btnEscolher.UseVisualStyleBackColor = false;
             this.btnEscolher.Click += new System.EventHandler(this.btnEscolher_Click);
             // 
-            // picPersonagemEscolhido
+            // picPersonagemEscolhido1
             // 
-            this.picPersonagemEscolhido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPersonagemEscolhido.Image = ((System.Drawing.Image)(resources.GetObject("picPersonagemEscolhido.Image")));
-            this.picPersonagemEscolhido.Location = new System.Drawing.Point(871, 368);
-            this.picPersonagemEscolhido.Name = "picPersonagemEscolhido";
-            this.picPersonagemEscolhido.Size = new System.Drawing.Size(100, 100);
-            this.picPersonagemEscolhido.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picPersonagemEscolhido.TabIndex = 29;
-            this.picPersonagemEscolhido.TabStop = false;
+            this.picPersonagemEscolhido1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPersonagemEscolhido1.Image = global::ArenaV2.Properties.Resources.Ponto_de_interrogacao;
+            this.picPersonagemEscolhido1.Location = new System.Drawing.Point(834, 418);
+            this.picPersonagemEscolhido1.Name = "picPersonagemEscolhido1";
+            this.picPersonagemEscolhido1.Size = new System.Drawing.Size(50, 50);
+            this.picPersonagemEscolhido1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPersonagemEscolhido1.TabIndex = 29;
+            this.picPersonagemEscolhido1.TabStop = false;
+            this.picPersonagemEscolhido1.DoubleClick += new System.EventHandler(this.picPersonagemEscolhido1_DoubleClick);
+            // 
+            // picPersonagemEscolhido2
+            // 
+            this.picPersonagemEscolhido2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPersonagemEscolhido2.Image = global::ArenaV2.Properties.Resources.Ponto_de_interrogacao;
+            this.picPersonagemEscolhido2.Location = new System.Drawing.Point(890, 418);
+            this.picPersonagemEscolhido2.Name = "picPersonagemEscolhido2";
+            this.picPersonagemEscolhido2.Size = new System.Drawing.Size(50, 50);
+            this.picPersonagemEscolhido2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPersonagemEscolhido2.TabIndex = 31;
+            this.picPersonagemEscolhido2.TabStop = false;
+            this.picPersonagemEscolhido2.DoubleClick += new System.EventHandler(this.picPersonagemEscolhido2_DoubleClick);
+            // 
+            // picPersonagemEscolhido3
+            // 
+            this.picPersonagemEscolhido3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPersonagemEscolhido3.Image = global::ArenaV2.Properties.Resources.Ponto_de_interrogacao;
+            this.picPersonagemEscolhido3.Location = new System.Drawing.Point(946, 418);
+            this.picPersonagemEscolhido3.Name = "picPersonagemEscolhido3";
+            this.picPersonagemEscolhido3.Size = new System.Drawing.Size(50, 50);
+            this.picPersonagemEscolhido3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPersonagemEscolhido3.TabIndex = 32;
+            this.picPersonagemEscolhido3.TabStop = false;
+            this.picPersonagemEscolhido3.DoubleClick += new System.EventHandler(this.picPersonagemEscolhido3_DoubleClick);
             // 
             // frmSelecionar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.Controls.Add(this.picPersonagemEscolhido3);
+            this.Controls.Add(this.picPersonagemEscolhido2);
             this.Controls.Add(this.btnEscolher);
-            this.Controls.Add(this.picPersonagemEscolhido);
+            this.Controls.Add(this.picPersonagemEscolhido1);
             this.Controls.Add(this.grpInformacoes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPersonagem);
             this.Controls.Add(this.dtgPersonagens);
             this.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmSelecionar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -400,7 +429,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picHab2Info)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHab1Info)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonagemInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPersonagemEscolhido3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,7 +456,7 @@
         private System.Windows.Forms.PictureBox picHab1Info;
         private System.Windows.Forms.PictureBox picPersonagemInfo;
         private System.Windows.Forms.Label lblEnergia;
-        private System.Windows.Forms.PictureBox picPersonagemEscolhido;
+        private System.Windows.Forms.PictureBox picPersonagemEscolhido1;
         private System.Windows.Forms.Button btnEscolher;
         private System.Windows.Forms.PictureBox picEnergia5;
         private System.Windows.Forms.PictureBox picEnergia4;
@@ -433,6 +464,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.PictureBox picPersonagemEscolhido2;
+        private System.Windows.Forms.PictureBox picPersonagemEscolhido3;
     }
 }
-

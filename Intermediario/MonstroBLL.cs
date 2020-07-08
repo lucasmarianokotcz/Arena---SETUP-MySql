@@ -3,6 +3,7 @@ using Intermediario.Interfaces;
 using Model.Monstro;
 using Model.Monstro.Regras.Classes;
 using Model.Shared;
+using Model.Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -67,7 +68,8 @@ namespace Intermediario
                             Descricao = r[$"hab{i}_descricao"] is DBNull ? string.Empty : Convert.ToString(r[$"hab{i}_descricao"]),
                             Recarga = Convert.ToInt32(r[$"hab{i}_recarga"]),
                             Invulnerabilidade = Convert.ToInt32(r[$"hab{i}_invulnerabilidade"]),
-                            Disposicao = Convert.ToInt32(r[$"hab{i}_disposicao"])
+                            Disposicao = Convert.ToInt32(r[$"hab{i}_disposicao"]),
+                            Alvo = (EAlvoHabilidade)Convert.ToInt32(r[$"hab{i}_alvo"])
                         });
                     }
                     lst.Add(obj);
@@ -75,6 +77,13 @@ namespace Intermediario
             }
 
             return lst;
+        }
+
+        public Monstro GerarMonstroAleatorio()
+        {
+            List<Monstro> monstros = Select();
+
+            return monstros[new Random().Next(0, monstros.Count)];
         }
 
         #endregion

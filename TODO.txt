@@ -1,3 +1,4 @@
 // TODO:
 
 1. Começar mexendo no form principal (fazer carregar os personagens, suas habilidades e seleção).
+1.1. Dar exec no projeto e ver onde dá erro.
