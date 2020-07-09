@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmArena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmArena.Designer.cs">
+      <DependentUpon>frmArena.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSelecionar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmArena.resx">
+      <DependentUpon>frmArena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSelecionar.resx">
       <DependentUpon>frmSelecionar.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Vermelho.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ICON_Sword.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

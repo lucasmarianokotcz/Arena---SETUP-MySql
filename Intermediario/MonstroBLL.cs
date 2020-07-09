@@ -7,6 +7,7 @@ using Model.Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace Intermediario
@@ -79,11 +80,15 @@ namespace Intermediario
             return lst;
         }
 
-        public Monstro GerarMonstroAleatorio()
+        public List<Monstro> GerarMonstrosAleatorios()
         {
             List<Monstro> monstros = Select();
+            List<Monstro> selecionados = new List<Monstro>();
 
-            return monstros[new Random().Next(0, monstros.Count)];
+            Random rnd = new Random();
+            selecionados = monstros.OrderBy(x => rnd.Next(monstros.Count)).Take(3).ToList();
+
+            return selecionados;
         }
 
         #endregion

@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelecionar));
             this.dtgPersonagens = new System.Windows.Forms.DataGridView();
-            this.Foto = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPersonagem = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grpInformacoes = new System.Windows.Forms.GroupBox();
@@ -55,6 +52,11 @@
             this.picPersonagemEscolhido1 = new System.Windows.Forms.PictureBox();
             this.picPersonagemEscolhido2 = new System.Windows.Forms.PictureBox();
             this.picPersonagemEscolhido3 = new System.Windows.Forms.PictureBox();
+            this.Foto = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsInvulneravel = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPersonagens)).BeginInit();
             this.grpInformacoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEnergia5)).BeginInit();
@@ -84,7 +86,8 @@
             this.Foto,
             this.Nome,
             this.Descricao,
-            this.Id});
+            this.Id,
+            this.IsInvulneravel});
             this.dtgPersonagens.Location = new System.Drawing.Point(12, 321);
             this.dtgPersonagens.Name = "dtgPersonagens";
             this.dtgPersonagens.ReadOnly = true;
@@ -97,40 +100,6 @@
             this.dtgPersonagens.TabIndex = 11;
             this.dtgPersonagens.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPersonagens_CellClick);
             this.dtgPersonagens.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPersonagens_CellDoubleClick);
-            // 
-            // Foto
-            // 
-            this.Foto.DataPropertyName = "Foto";
-            this.Foto.Frozen = true;
-            this.Foto.HeaderText = "Foto";
-            this.Foto.Name = "Foto";
-            this.Foto.ReadOnly = true;
-            this.Foto.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Foto.Width = 75;
-            // 
-            // Nome
-            // 
-            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            // 
-            // Descricao
-            // 
-            this.Descricao.DataPropertyName = "Descricao";
-            this.Descricao.HeaderText = "Descrição";
-            this.Descricao.Name = "Descricao";
-            this.Descricao.ReadOnly = true;
-            this.Descricao.Visible = false;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
             // 
             // txtPersonagem
             // 
@@ -396,6 +365,48 @@
             this.picPersonagemEscolhido3.TabStop = false;
             this.picPersonagemEscolhido3.DoubleClick += new System.EventHandler(this.picPersonagemEscolhido3_DoubleClick);
             // 
+            // Foto
+            // 
+            this.Foto.DataPropertyName = "Foto";
+            this.Foto.Frozen = true;
+            this.Foto.HeaderText = "Foto";
+            this.Foto.Name = "Foto";
+            this.Foto.ReadOnly = true;
+            this.Foto.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Foto.Width = 75;
+            // 
+            // Nome
+            // 
+            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // Descricao
+            // 
+            this.Descricao.DataPropertyName = "Descricao";
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            this.Descricao.Visible = false;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // IsInvulneravel
+            // 
+            this.IsInvulneravel.DataPropertyName = "IsInvulneravel";
+            this.IsInvulneravel.HeaderText = "IsInvulneravel";
+            this.IsInvulneravel.Name = "IsInvulneravel";
+            this.IsInvulneravel.ReadOnly = true;
+            this.IsInvulneravel.Visible = false;
+            // 
             // frmSelecionar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -410,6 +421,7 @@
             this.Controls.Add(this.dtgPersonagens);
             this.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmSelecionar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -460,11 +472,12 @@
         private System.Windows.Forms.Button btnEscolher;
         private System.Windows.Forms.PictureBox picEnergia5;
         private System.Windows.Forms.PictureBox picEnergia4;
+        private System.Windows.Forms.PictureBox picPersonagemEscolhido2;
+        private System.Windows.Forms.PictureBox picPersonagemEscolhido3;
         private System.Windows.Forms.DataGridViewImageColumn Foto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.PictureBox picPersonagemEscolhido2;
-        private System.Windows.Forms.PictureBox picPersonagemEscolhido3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsInvulneravel;
     }
 }

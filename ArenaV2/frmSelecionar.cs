@@ -18,8 +18,7 @@ namespace ArenaV2
 
         private List<Personagem> lstPersonagens;
         private int personagensEscolhidos = 0;
-        private Personagem personagemSelecionado;
-        private Monstro monstroSelecionado;
+        private Personagem personagemSelecionado;        
         private readonly PictureBox[] infoPics = new PictureBox[5];
         private readonly List<byte[]> slotsOcupados = new List<byte[]>() { null, null, null };
 
@@ -36,7 +35,7 @@ namespace ArenaV2
         {
             try
             {
-                dtgPersonagens.DataSource = lstPersonagens = new PersonagemBLL().Select();
+                dtgPersonagens.DataSource = lstPersonagens = new PersonagemBLL().Select().OrderBy(x => x.Nome).ToList();
 
                 infoPics[0] = picEnergia1;
                 infoPics[1] = picEnergia2;
@@ -137,15 +136,20 @@ namespace ArenaV2
 
         private void btnEscolher_Click(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 if (personagensEscolhidos == 3)
                 {
                     Hide();
-                    monstroSelecionado = new MonstroBLL().GerarMonstroAleatorio();
 
-                    //frmArena formArena = new frmArena(personagemSelecionado, monstroSelecionado);
-                    //formArena.ShowDialog();
+                    List<Monstro> monstrosSelecionados = new MonstroBLL().GerarMonstrosAleatorios();
+                    List<Personagem> personagensSelecionados = new List<Personagem>();
+                    personagensSelecionados.Add(lstPersonagens.Where(x => x.Foto == slotsOcupados[0]).First());
+                    personagensSelecionados.Add(lstPersonagens.Where(x => x.Foto == slotsOcupados[1]).First());
+                    personagensSelecionados.Add(lstPersonagens.Where(x => x.Foto == slotsOcupados[2]).First());
+
+                    frmArena formArena = new frmArena(personagensSelecionados, monstrosSelecionados);
+                    formArena.ShowDialog();
 
                     personagensEscolhidos = 0;
                     picPersonagemEscolhido1.Image = picPersonagemEscolhido2.Image = picPersonagemEscolhido3.Image = Properties.Resources.Ponto_de_interrogacao;
@@ -160,9 +164,9 @@ namespace ArenaV2
                     throw new Exception("Selecione um personagem dando dois cliques na lista.");
                 }
             }
-            catch (Exception ex)
+            //catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -366,6 +370,6 @@ namespace ArenaV2
             }
         }
 
-        #endregion                
+        #endregion
     }
 }

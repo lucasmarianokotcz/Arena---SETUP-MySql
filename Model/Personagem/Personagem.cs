@@ -29,5 +29,8 @@ namespace Model.Personagem
         {
             Habilidades = new List<HabilidadePersonagem>();
         }
+
+        // IN-GAME
+        public bool IsInvulneravel { get; set; } = false;
     }
 }
